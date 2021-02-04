@@ -36,7 +36,7 @@ class Annoucement extends Model
     public function getCreatedAtAttribute($value)
     {
         $phpdate = strtotime( $value );
-        $mysqldate = date( "d/m/y h:m:s", $phpdate );
+        $mysqldate = date( "d/m/y H:i:s", $phpdate );
         return $mysqldate;
     }
 

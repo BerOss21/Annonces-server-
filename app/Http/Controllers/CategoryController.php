@@ -24,7 +24,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        return response()->json(["success"=>true,"categories"=>Category::orderBy("created_at")->get()]);
+        return response()->json(["success"=>true,"categories"=>Category::orderBy("name")->get()]);
     }
 
     /**

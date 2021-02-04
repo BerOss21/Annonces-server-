@@ -23,7 +23,7 @@ class CityController extends Controller
 
     public function index()
     {
-        return response()->json(["cities"=>City::latest()->get()]);
+        return response()->json(["cities"=>City::orderBy("name")->get()]);
     }
 
     /**

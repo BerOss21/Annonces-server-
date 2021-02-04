@@ -27,6 +27,7 @@ class CreateAnnoucementsTable extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
             $table->string("price");
+            $table->integer("views");
             $table->timestamps();
         });
     }

@@ -26,13 +26,13 @@ class AnnoucementController extends Controller
 
     public function index()
     {
-        $annoucements=Annoucement::with("category","galleries","cities","user")->latest()->get();
+        $annoucements=Annoucement::with("category","galleries","cities","user")->orderBy("created_at","desc")->get();
         return response()->json(["annoucements"=>$annoucements]);
     }
 
     public function myAnnoucements(){
         $user=$user=Auth::guard('api')->user();
-        $annoucements=Annoucement::whereUserId($user->id)->with("category","galleries","cities","user")->latest()->get();
+        $annoucements=Annoucement::whereUserId($user->id)->with("category","galleries","cities","user","user.profile")->latest()->get();
         return response()->json(["annoucements"=>$annoucements]);
     }
     /**
@@ -96,7 +96,8 @@ class AnnoucementController extends Controller
      */
     public function show($id)
     {
-        //
+        $annoucement=Annoucement::whereId($id)->with("category","galleries","cities","user")->orderBy("created_at","desc")->first();
+        return response()->json(["annoucement"=>$annoucement]);
     }
 
     /**
