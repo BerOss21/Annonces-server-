@@ -20,11 +20,11 @@ class ConversationEvent
      * @return void
      */
 
-    protected $massage;
+    protected $data;
 
-    public function __construct($msg)
+    public function __construct($data)
     {
-        $this->message=$msg;
+        $this->data=$data;
     }
 
     /**

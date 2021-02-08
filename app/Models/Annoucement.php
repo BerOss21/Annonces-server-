@@ -33,6 +33,15 @@ class Annoucement extends Model
         return $this->hasMany('App\Models\Gallery');
     }
 
+    public function conversations()
+    {
+        return $this->hasMany('App\Models\Conversation');
+    }
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message');
+    }
+    
     public function getCreatedAtAttribute($value)
     {
         $phpdate = strtotime( $value );

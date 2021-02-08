@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\ConversationEvent;
+use App\Listeners\SaveConversation;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,7 +20,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ConversationEvent::class => [
+            SaveConversation::class,
+        ]
     ];
+    
 
     /**
      * Register any events for your application.

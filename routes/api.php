@@ -23,6 +23,8 @@ Route::post('user/register', 'UserController@register');
 Route::patch('user/update/{id}', 'UserController@update')->middleware("auth:api");
 
 Route::resource('annoucements','AnnoucementController');
+Route::get('getMessages/{annoucement_id}/{user_id}/{prop?}','MessageController@getMessages');
+Route::resource('messages','MessageController');
 Route::get('myAnnoucements', 'AnnoucementController@myAnnoucements');
 Route::resource('cities', 'CityController');
 Route::resource('categories', 'CategoryController');

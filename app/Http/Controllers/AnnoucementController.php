@@ -62,6 +62,7 @@ class AnnoucementController extends Controller
 
         ini_set('memory_limit', '-1');
 
+                                                            
         $image = $request->image;
         $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
         \Image::make($image)->resize(420, 240)->save(public_path('storage\images\annoucements\\').$name);

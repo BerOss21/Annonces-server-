@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Annoucement');
     }
 
+    public function conversations()
+    {
+        return $this->hasMany('App\Models\Conversation');
+    }
+
     public function getAvatarAttribute($val){
         return(Storage::disk('local')->exists('public/avatars/'.$val))? (\Image::make(public_path()."\\storage\\avatars\\".$val)->encode('data-url')):($val);
     }
