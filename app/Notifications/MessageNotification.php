@@ -33,7 +33,7 @@ class MessageNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['broadcast','database'];
     }
 
     /**
