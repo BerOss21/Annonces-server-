@@ -10,9 +10,9 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $table="messages";
 
     protected $guarded=[];
+    protected $table="messages";
 
     public function annoucement()
     {
@@ -26,5 +26,12 @@ class Message extends Model
     public function getToAttribute($value){
         $user=User::find($value);
         return $user;
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        $phpdate = strtotime( $value );
+        $mysqldate = date( "d/m/y H:i:s", $phpdate );
+        return $mysqldate;
     }
 }

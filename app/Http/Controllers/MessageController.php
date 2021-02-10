@@ -29,8 +29,15 @@ class MessageController extends Controller
     }
 
     public function getMessages($annoucement_id,$user_id,$prop=null){
-        $messages=Annoucement::find($annoucement_id)->messages()->where("from",$user_id)->orWhere("to",$user_id)->get();
-        $list=$prop?Annoucement::find($annoucement_id)->messages()->where("from",$user_id)->orWhere("to",$user_id)->select("from","to")->get():"";    
+        $messages=Message::where("annoucement_id",$annoucement_id)->where(function($query) use($user_id) {
+            $query->where("from",$user_id)
+                  ->orwhere("to",$user_id);
+        })->get();
+        
+        $list=$prop?Message::where("annoucement_id",$annoucement_id)->where(function($query) use($user_id) {
+            $query->where("from",$user_id)
+                  ->orwhere("to",$user_id);
+        })->select("from","to")->get():"";    
         return response()->json(["messages"=>$messages,"list"=>$list]);
     }
 
