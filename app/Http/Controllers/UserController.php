@@ -24,6 +24,7 @@ public $successStatus = 200;
             $success['role'] = Auth()->user()->role;
             $success['name'] = Auth()->user()->name;
             $success['email'] = Auth()->user()->email;
+            $success['mobile'] = Auth()->user()->mobile;
             $success['avatar'] = Auth()->user()->avatar;
             $success['id'] =  $user->id;
             return response()->json(['success' => $success], $this-> successStatus); 
@@ -51,7 +52,7 @@ public $successStatus = 200;
         }
         $input = $request->all(); 
         $input['password'] = bcrypt($input['password']);
-
+        
 
         $image = $request->avatar;
         $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
@@ -64,6 +65,7 @@ public $successStatus = 200;
         $success['name'] =   $user->name;
         $success['avatar'] = $user->avatar;
         $success['email'] =  $user->email;
+        $success['mobile'] =  $user->mobile;
         $success['id'] =  $user->id;
         $user->profile()->create();
         return response()->json(['success'=>$success], $this-> successStatus); 
@@ -93,6 +95,8 @@ public $successStatus = 200;
 
         $data["name"]=$request->name;
         $data["email"]=$request->email;
+        $data["mobile"]=$request->mobile;
+
         if($request->avatar){
             $image = $request->avatar;
             $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
@@ -109,6 +113,7 @@ public $successStatus = 200;
     
         $success['name'] =$user->name;
         $success['email'] =$user->email;
+        $success['mobile'] =$user->mobile;
         $success['avatar'] =$user->avatar;
 
         return response()->json(['success' => $success]); 

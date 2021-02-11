@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use App\Events\ViewsEvent;
 
 
 class AnnoucementController extends Controller
@@ -98,7 +99,14 @@ class AnnoucementController extends Controller
     public function show($id)
     {
         $annoucement=Annoucement::whereId($id)->with("category","galleries","cities","user")->orderBy("created_at","desc")->first();
-        return response()->json(["annoucement"=>$annoucement]);
+        if($annoucement){
+            event(new ViewsEvent($annoucement));
+            return response()->json(["annoucement"=>$annoucement]);
+        }
+        else{
+            return response()->json(["annoucement"=>[""]]); 
+        }
+        
     }
 
     /**

@@ -7,7 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\ConversationEvent;
+use App\Events\ViewsEvent;
 use App\Listeners\SaveConversation;
+use App\Listeners\IncreaseViews;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ConversationEvent::class => [
             SaveConversation::class,
+        ],
+        ViewsEvent::class => [
+            IncreaseViews::class,
         ]
     ];
     
