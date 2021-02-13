@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\MessageRequest;
+use App\Models\User;
 use App\Models\Message;
 use App\Models\Annoucement;
-use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\MessageRequest;
 use Illuminate\Support\Facades\Auth; 
 use App\Notifications\MessageNotification;
 

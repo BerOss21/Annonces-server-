@@ -59,6 +59,7 @@ class AnnoucementController extends Controller
         $data["description"]=$request->description;
         $data["price"]=$request->price;
         $data["category_id"]=$request->category_id;
+        $data["views"]=0;
         $data["user_id"]=Auth::guard('api')->user()->id;
 
         ini_set('memory_limit', '-1');
